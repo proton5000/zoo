@@ -1,0 +1,10 @@
+<Resource name="jdbc/mydb"
+          auth="Container"
+          type="javax.sql.DataSource"
+          maxActive="10"
+          maxIdle="5"
+          maxWait="30000"
+          username="postgres"
+          password="postgres"
+          driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://127.0.0.1:5432/hiber"/>

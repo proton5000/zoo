@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <appender name="STDOUT_ROLL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <rollingPolicy class="org.levelup.lesson8web.configs.TimeInternalRollingPolicy">
+            <fileNamePattern>stdout.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%X{hash}][%X{ip}] %logger - %replace(%msg){'\n', ''}%n%xEx{20}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDERR_ROLL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="org.levelup.lesson8web.configs.TimeInternalRollingPolicy">
+            <fileNamePattern>stderr.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%X{hash}][%X{ip}] %logger - %replace(%msg){'\n', ''}%n%xEx{20}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT_ROLL" />
+        <appender-ref ref="STDERR_ROLL" />
+    </root>
+
+    <logger name="org.springframework" level="INFO">
+        <appender-ref ref="STDOUT_ROLL" />
+        <appender-ref ref="STDERR_ROLL" />
+    </logger>
+
+    <logger name="org.springframework.web.client" level="DEBUG">
+        <appender-ref ref="STDOUT_ROLL" />
+        <appender-ref ref="STDERR_ROLL" />
+    </logger>
+
+    <logger name="org.hibernate" level="WARN">
+        <appender-ref ref="STDOUT_ROLL" />
+        <appender-ref ref="STDERR_ROLL" />
+    </logger>
+
+    <logger name="org.apache" level="WARN">
+        <appender-ref ref="STDOUT_ROLL" />
+        <appender-ref ref="STDERR_ROLL" />
+    </logger>
+
+</configuration>

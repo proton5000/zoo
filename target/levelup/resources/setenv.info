@@ -1,0 +1,11 @@
+add this script to tomcat/bin
+
+linux:
+export logback_logs_path=$CATALINA_HOME/logs
+
+export CATALINA_OPTS="$CATALINA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+
+windows:
+set logback_logs_path=%CATALINA_HOME%\logs
+
+set CATALINA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n
